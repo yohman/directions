@@ -1,0 +1,267 @@
+#timelineContainer {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 1;
+}
+
+#yearMarkers {
+    position: relative;
+    height: 40px;  /* Reduced from 80px */
+    margin-bottom: 0;  /* Removed bottom margin */
+    z-index: 2;  /* Put markers above the slider */
+}
+
+.year-marker {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, 0);
+    background-color: var(--route-color);
+    border: 2px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background-color 0.3s;  /* Add transition for background-color */
+    z-index: 2;  /* Ensure markers are above slider */
+}
+
+.year-marker.selected {
+    background-color: white;
+    color: var(--route-color);
+    transform: translate(-50%, 0) scale(1.1);
+}
+
+.year-marker.selected:hover {
+    transform: translate(-50%, 0) scale(1.2);
+}
+
+.year-marker:hover {
+    transform: translate(-50%, 0) scale(1.1);
+}
+
+#timeSlider {
+    width: 100%;
+    position: absolute;
+    top: 16px;
+    -webkit-appearance: none;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    outline: none;
+    pointer-events: none;  /* Disable slider interaction */
+    z-index: 1;  /* Put slider behind markers */
+}
+
+/* Hide the slider handle */
+#timeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
+}
+
+#timeSlider::-moz-range-thumb {
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
+}
+
+/* Basic styling for the map container */
+body {
+		margin: 0;
+		padding: 0;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	#map {
+		width: 100%;
+		height: 100vh;
+	}
+
+.popup-no-arrow .mapboxgl-popup-tip {
+	display: none;
+}
+
+.popup-no-arrow .mapboxgl-popup-content {
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 5px;
+	color: #000;
+	padding: 5px;
+}
+
+.marker-label .mapboxgl-popup-content {
+	font-size: 12px;
+	color: var(--route-color, #005B49);
+	background-color: rgba(255, 255, 255, 0.9);
+	border: 2px solid var(--route-color, #005B49);
+	border-radius: 4px;
+	padding: 5px 8px;
+	left: 0px; /* Moved 10px right from original 65px */
+	top: 52px;
+	font-family: 'Courier New', Courier, monospace;
+	box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+.marker-label-destination .mapboxgl-popup-content {
+	/* font-size: 10px;
+	color: #fff;
+	background-color: #878782;
+	border-radius: 0px;
+	padding: 5px;
+	left: 65px;
+	top: 40px; */
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.marker-label-teganuma .mapboxgl-popup-content {
+	font-size: 2em;
+	font-style: italic;
+	color: #fff;
+	opacity: 0.5;	
+	background: none;
+}
+.mapboxgl-popup-close-button {
+    display: none;
+}
+
+/* .controls {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 10px;
+} */
+
+#sliderContainer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    display: none; /* Hide the slider container initially */
+    align-items: center;
+    gap: 10px; /* Add spacing between button and slider */
+    min-width: 300px; /* Add minimum width */
+}
+
+.slider-track-container {
+    position: relative;
+    flex-grow: 1; /* Use flexbox growing instead of width */
+    min-width: 0; /* Allow container to shrink */
+}
+
+/* Remove #walkingGif styles */
+
+#progressSlider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--route-color, #FF5A16); /* Use CSS variable with fallback */
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+#progressSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #fff url('../images/walk.gif') center center no-repeat;
+    background-size: 20px 20px;
+    border: 2px solid var(--route-color, #FF5A16);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 0 2px white;
+}
+
+#progressSlider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #fff url('../images/walk.gif') center center no-repeat;
+    background-size: 20px 20px;
+    border: 2px solid var(--route-color, #FF5A16);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 0 0 2px white;
+}
+
+#playPauseButton {
+	width: 60px;
+	height: 30px;
+	background-color: var(--route-color, #FF5A16); /* Use CSS variable with fallback */
+	color: white;
+	border: none;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+#playPauseButton:hover {
+	background-color: color-mix(in srgb, var(--route-color, #FF5A16) 80%, white);
+}
+
+.controls button {
+	width: 30px;
+	height: 30px;
+	background-color: var(--route-color, #FF5A16); /* Use CSS variable with fallback */
+	color: white;
+	border: none;
+	/* border-radius: 5px; */
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.controls button:hover {
+	background-color: color-mix(in srgb, var(--route-color, #FF5A16) 80%, white);
+}
+
+#startButton {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100px;
+	height: 100px;
+	background-color: color-mix(in srgb, var(--route-color, #FF5A16) 80%, transparent); /* Use CSS variable with fallback */
+	border: none;
+	border-radius: 50%;
+	color: white;
+	font-size: 50px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10; /* Ensure it stays above the map */
+	transition: background-color 0.3s, transform 0.3s;
+	box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+#startButton:hover {
+	background-color: var(--route-color, #FF5A16); /* Use CSS variable with fallback */
+	transform: translate(-50%, -50%) scale(1.1);
+}
